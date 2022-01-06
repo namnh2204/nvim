@@ -105,3 +105,9 @@ keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
 keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
 -- Change '<CR>' to whatever shortcut you like :)
 vim.api.nvim_set_keymap('n', '<CR>', '<cmd>NeoZoomToggle<CR>', { noremap=true, silent=true, nowait=true })
+
+-- Debugging --
+keymap("n", "<F7>", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<F8>", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<F9>", "<cmd>lua require'dap'.step_out()<cr>", opts)
+

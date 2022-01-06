@@ -90,7 +90,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use "folke/tokyonight.nvim"
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
+  use "lunarvim/onedarker.nvim"
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
 
@@ -165,10 +165,25 @@ return packer.startup(function(use)
   use "mattn/webapi-vim"
 
   -- DAP
-  use "mfussenegger/nvim-dap"
+  use {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("user.dap").setup()
+    end,
+  }
   use "theHamsta/nvim-dap-virtual-text"
-  use "rcarriga/nvim-dap-ui"
-  use "Pocco81/DAPInstall.nvim"
+  use {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+  }
+  use {
+    "Pocco81/DAPInstall.nvim",
+    config = function()
+      require("user.dap-install")
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
