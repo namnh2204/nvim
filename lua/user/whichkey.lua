@@ -233,7 +233,6 @@ local mappings = {
     -- ["2"] = { ":2ToggleTerm<cr>", "2" },
     -- ["3"] = { ":3ToggleTerm<cr>", "3" },
     -- ["4"] = { ":4ToggleTerm<cr>", "4" },
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "LazyGit"},
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
