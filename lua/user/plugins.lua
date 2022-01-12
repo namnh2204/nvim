@@ -136,6 +136,7 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   }
+  use "github/copilot.vim"
 
   -- Java
   use "mfussenegger/nvim-jdtls"
@@ -144,6 +145,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
+  use { "nvim-telescope/telescope-ui-select.nvim" }
 
   -- Treesitter
   use {
