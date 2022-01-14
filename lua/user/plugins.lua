@@ -41,41 +41,196 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use {
+    "wbthomason/packer.nvim",
+    -- event = "VimEnter",
+  } -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim"
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require "user.autopairs"
+    end,
+  } -- Autopairs, integrates with both cmp and treesitter
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require "user.comment"
+    end,
+  }
+  -- Colorschemes
+  use {
+    "NvChad/nvim-base16.lua",
+    after = "packer.nvim",
+    config = function()
+      require("colors").init()
+   end,
+  }
+
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require "user.icons"
+    end,
+    after = "nvim-base16.lua",
+  }
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons", -- optional, for file icon
+    },
+    after = "nvim-web-devicons",
+    config = function()
+      require "user.nvim-tree"
+    end,
+  }
+  use {
+    "akinsho/bufferline.nvim",
+    after = "nvim-web-devicons",
+    config = function()
+      require "user.bufferline"
+    end,
+  }
   use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
+  use {
+    "nvim-lualine/lualine.nvim",
+    after = "nvim-web-devicons",
+    config = function()
+      require "user.lualine"
+    end,
+  }
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require "user.toggleterm"
+    end,
+  }
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require "user.project"
+    end,
+  }
+  use {
+    "lewis6991/impatient.nvim",
+    config = function() 
+      require "user.impatient"
+    end,
+  }
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    config = function()
+      require "user.indentline"
+    end,
+  }
+  use {
+    "goolord/alpha-nvim",
+    config = function()
+      require "user.alpha"
+    end,
+  }
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim"
-  use "unblevable/quick-scope"
-  use "phaazon/hop.nvim"
-  use "andymass/vim-matchup"
-  use "nacro90/numb.nvim"
-  use "monaqa/dial.nvim"
-  use "norcalli/nvim-colorizer.lua"
-  use "windwp/nvim-spectre"
-  use "folke/zen-mode.nvim"
-  use "karb94/neoscroll.nvim"
-  use "folke/todo-comments.nvim"
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require "user.whichkey"
+    end,
+  }
+  use {
+    "unblevable/quick-scope",
+    config = function()
+      require "user.quickscope"
+    end,
+  }
+  use {
+    "phaazon/hop.nvim",
+    config = function()
+      require "user.hop"
+    end,
+  }
+  use {
+    "andymass/vim-matchup",
+    config = function()
+      require "user.matchup"
+    end,
+  }
+  use {
+    "nacro90/numb.nvim",
+    config = function()
+      require "user.numb"
+    end,
+  }
+  use {
+    "monaqa/dial.nvim",
+    config = function()
+      require "user.dial"
+    end,
+  }
+  use {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
+    config = function()
+      require "user.colorizer"
+    end,
+  }
+  use {
+    "windwp/nvim-spectre",
+    config = function()
+      require "user.spectre"
+    end,
+  }
+  use {
+    "folke/zen-mode.nvim",
+    config = function()
+      require "user.zen-mode"
+    end,
+  }
+  use {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require "user.neoscroll"
+    end,
+  }
+  use {
+    "folke/todo-comments.nvim",
+    config = function()
+      require "user.todo-comments"
+    end,
+  }
   use "kevinhwang91/nvim-bqf"
   use "ThePrimeagen/harpoon"
-  use "MattesGroeger/vim-bookmarks"
-  use "lunarvim/vim-solidity"
-  use "blackCauldron7/surround.nvim"
-  use "Shatur/neovim-session-manager"
-  use "rcarriga/nvim-notify"
-  use "tversteeg/registers.nvim"
+  use {
+    "MattesGroeger/vim-bookmarks",
+    config = function()
+      require "user.bookmark"
+    end,
+  }
+  use {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require "user.surround"
+    end,
+  }
+  use {
+    "Shatur/neovim-session-manager",
+    config = function()
+      require "user.session-manager"
+    end,
+  }
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require "user.notify"
+    end,
+  }
+  use {
+    "tversteeg/registers.nvim",
+    config = function()
+      require "user.registers"
+    end,
+  }
   use "metakirby5/codi.vim"
   use {
     "nyngwang/NeoZoom.lua",
@@ -87,24 +242,28 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
-  -- Colorschemes
-  use {
-    "NvChad/nvim-base16.lua",
-    after = "packer.nvim",
-    config = function()
-      require("colors").init()
-   end,
-  }
-
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
+  use {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require "user.cmp"
+    end,
+  } -- The completion plugin
+  use {
+    "hrsh7th/cmp-buffer",
+  } -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use {
+    "hrsh7th/cmp-cmdline",
+  } -- cmdline completions
+  use {
+    "saadparwaiz1/cmp_luasnip",
+  } -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
-  use "hrsh7th/cmp-nvim-lua"
+  use {
+    "hrsh7th/cmp-nvim-lua",
+  }
   use {
     "tzachar/cmp-tabnine",
     config = function()
@@ -123,16 +282,36 @@ return packer.startup(function(use)
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use {
+    "rafamadriz/friendly-snippets",
+    event = "InsertEnter"
+  } -- a bunch of snippets to use
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
+  use {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "user.lsp"
+    end,
+  }-- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "filipdutescu/renamer.nvim"
-  use "simrat39/symbols-outline.nvim"
-  use "ray-x/lsp_signature.nvim"
+  use {
+    "filipdutescu/renamer.nvim",
+    config = function()
+      require "user.renamer"
+    end,
+  }
+  use {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require "user.symbol-outline"
+    end,
+  }
+  use {
+    "ray-x/lsp_signature.nvim",
+  }
   use "b0o/SchemaStore.nvim"
   use {
     "folke/trouble.nvim",
@@ -144,29 +323,67 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-jdtls"
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
+  use {
+    "nvim-telescope/telescope.nvim",
+    config = function()
+      require "user.telescope"
+    end,
+  }
   use "tom-anders/telescope-vim-bookmarks.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
   use "nvim-telescope/telescope-ui-select.nvim"
-  use "nvim-telescope/telescope-file-browser.nvim"
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    config = function()
+      require "user.telescope-file-browser"
+    end,
+  }
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    config = function()
+      require "user.treesitter"
+    end,
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "ChristianChiarulli/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
-  use "romgrk/nvim-treesitter-context"
+  use {
+    "romgrk/nvim-treesitter-context",
+    config = function()
+      require "user.ts-context"
+    end,
+  }
   use "mizlan/iswap.nvim"
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
-  use "f-person/git-blame.nvim"
-  use "ruifm/gitlinker.nvim"
-  use "mattn/vim-gist"
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require "user.gitsigns"
+    end,
+  }
+  use {
+    "f-person/git-blame.nvim",
+    config = function()
+      require "user.git-blame"
+    end,
+  }
+  use {
+    "ruifm/gitlinker.nvim",
+    config = function()
+      require "user.gitlinker"
+    end,
+  }
+  use {
+    "mattn/vim-gist",
+    config = function()
+      require "user.gist"
+    end,
+  }
   use "mattn/webapi-vim"
 
   -- DAP
