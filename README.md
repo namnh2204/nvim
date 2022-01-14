@@ -1,4 +1,4 @@
-# Neovim from scratch
+# Neovim config
 
 ## Try out this config
 
