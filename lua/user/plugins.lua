@@ -65,7 +65,7 @@ return packer.startup(function(use)
     after = "packer.nvim",
     config = function()
       require("colors").init()
-   end,
+    end,
   }
 
   use {
