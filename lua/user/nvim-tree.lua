@@ -10,6 +10,8 @@ vim.g.nvim_tree_show_icons = {
     tree_width = 30,
 }
 
+vim.g.nvim_tree_indent_markers = 1
+
 vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
