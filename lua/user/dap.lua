@@ -7,21 +7,21 @@ M.setup = function()
     on_config_done = nil,
     breakpoint = {
       text = "",
-      texthl = "LspDiagnosticsSignError",
+      texthl = "DiagnosticSignError",
       linehl = "",
       numhl = "",
     },
     breakpoint_rejected = {
       text = "",
-      texthl = "LspDiagnosticsSignHint",
+      texthl = "DiagnosticSignHint",
       linehl = "",
       numhl = "",
     },
     stopped = {
       text = "",
-      texthl = "LspDiagnosticsSignInformation",
+      texthl = "DiagnosticSignInformation",
       linehl = "DiagnosticUnderlineInfo",
-      numhl = "LspDiagnosticsSignInformation",
+      numhl = "DiagnosticSignInformation",
     },
   }
   local dap = require "dap"
