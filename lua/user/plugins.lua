@@ -114,7 +114,7 @@ return packer.startup(function(use)
   }
   use {
     "lewis6991/impatient.nvim",
-    config = function() 
+    config = function()
       require "user.impatient"
     end,
   }
@@ -235,6 +235,14 @@ return packer.startup(function(use)
   use {
     "nyngwang/NeoZoom.lua",
   }
+  -- use "metakirby5/codi.vim"
+  use {
+    "SmiteshP/nvim-gps",
+    config = function ()
+      require "user.gps"
+    end
+  }
+  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
   use {
 
     "iamcco/markdown-preview.nvim",
@@ -245,6 +253,7 @@ return packer.startup(function(use)
   -- cmp plugins
   use {
     "hrsh7th/nvim-cmp",
+    commit = "d93104244c3834fbd8f3dd01da9729920e0b5fe7",
     config = function()
       require "user.cmp"
     end,
@@ -317,7 +326,18 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   }
-  use "github/copilot.vim"
+  use {
+    "github/copilot.vim",
+    config = function()
+      require "user.copilot"
+    end,
+  }
+  use {
+    "RRethy/vim-illuminate",
+    config = function ()
+      require "user.illuminate"
+    end
+  }
 
   -- Java
   use "mfussenegger/nvim-jdtls"
@@ -348,7 +368,7 @@ return packer.startup(function(use)
     end,
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "ChristianChiarulli/nvim-ts-rainbow"
+  use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use {
@@ -385,6 +405,7 @@ return packer.startup(function(use)
     end,
   }
   use "mattn/webapi-vim"
+  use "https://github.com/rhysd/conflict-marker.vim"
 
   -- DAP
   use {

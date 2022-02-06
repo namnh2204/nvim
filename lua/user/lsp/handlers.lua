@@ -51,17 +51,43 @@ end
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      let ftToIgnore = ['html']
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> if index(ftToIgnore, &ft) < 0 | lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> if index(ftToIgnore, &ft) < 0 | lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
+    local status_ok, illuminate = pcall(require, "illuminate")
+    if not status_ok then
+      return
+    end
+    illuminate.on_attach(client)
+    -- vim.api.nvim_exec(
+    --   [[
+    --
+    --   let b:save_word = ""
+    --   function HoldReference()
+    --     let b:current_word = expand("<cword>")
+    --     echo 'current word: ' b:current_word
+    --     echo 'save word: ' b:save_word
+    --     if b:current_word != b:save_word
+    --       lua vim.lsp.buf.clear_references()
+    --       let b:save_word = b:current_word
+    --     endif
+    --     if b:current_word == ","
+    --       lua vim.lsp.buf.clear_references()
+    --     endif
+    --     if b:current_word == "."
+    --       lua vim.lsp.buf.clear_references()
+    --     endif
+    --   endfunction
+    --
+    --
+    --
+    --   let ftToIgnore = ['html']
+    --
+    --   augroup lsp_document_highlight
+    --     autocmd! * <buffer>
+    --     autocmd CursorHold <buffer> if index(ftToIgnore, &ft) < 0 | lua vim.lsp.buf.document_highlight()
+    --     autocmd CursorMoved <buffer> if index(ftToIgnore, &ft) < 0 | call HoldReference()
+    --   augroup END
+    -- ]],
+    --   false
+    -- )
   end
 end
 
@@ -70,7 +96,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
