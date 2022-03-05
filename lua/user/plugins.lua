@@ -97,7 +97,7 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     after = "nvim-web-devicons",
     config = function()
-      require "user.lualine"
+      require "user.lualine2"
     end,
   }
   use {
@@ -281,6 +281,12 @@ return packer.startup(function(use)
         max_lines = 1000,
         max_num_results = 20,
         sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = "..",
+        ignored_file_types = { -- default is not to ignore
+          -- uncomment to ignore in lua:
+          -- lua = true
+        },
       }
     end,
 
@@ -368,7 +374,7 @@ return packer.startup(function(use)
     end,
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "p00f/nvim-ts-rainbow"
+  use {'p00f/nvim-ts-rainbow', commit = 'c6c26c4def0e9cd82f371ba677d6fc9baa0038af'}
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use {
